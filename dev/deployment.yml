@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: setup-service
+  namespace: devolpment
+spec:
+  selector:
+    matchLabels:
+      app: setup-service
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: setup-service
+    spec:
+      containers:
+      - name: setup-service
+        image: navedamanat/setup-service:latest 
+
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8282
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: setup-service
+  namespace: devolpment
+spec:
+  selector:
+    app: setup-service
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8282
