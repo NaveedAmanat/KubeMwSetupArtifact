@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: setup-service
-        image: navedamanat/setup-service:latest
+        image: navedamanat/setup-service:v3
 
         imagePullPolicy: IfNotPresent
         ports:
